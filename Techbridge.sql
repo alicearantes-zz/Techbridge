@@ -64,7 +64,7 @@ INSERT INTO tb_empresa( emp_nome, emp_cnpj, emp_email, emp_cep, emp_rua, emp_num
  emp_complemento, emp_bairro, emp_cidade, emp_estado, emp_pais, emp_contato, emp_tipo_empresa, emp_data_cadastro) VALUES 
  ('AgileTech Solutions', '35.985.357/0097-55', 'contato@agiletech.com', '98798-098', 'Machado de Assis', '347',
  'Ap 10º andar', 'Brigadeiro', 'Taboão da Serra', 'SP', 'Brasil', '(11) 98765-8753', 'Tecnologia', '2026-01-10'),
- ('Inova Gestão', '76.008.766./1167-00', 'inova@gest.com', '87533-064', 'Argentina', '76', 'Ap. 3º andar', 'Catuaba',
+ ('Inova Gestão', '76.008.766/1167-00', 'inova@gest.com', '87533-064', 'Argentina', '76', 'Ap. 3º andar', 'Catuaba',
  'São Bento', 'SP', 'Brasil', '(11) 98756-5443', 'Consultoria', '2025-09-27');
 
 -- insert diagnostico
