@@ -64,7 +64,7 @@ INSERT INTO tb_empresa( emp_nome, emp_cnpj, emp_email, emp_cep, emp_rua, emp_num
  emp_complemento, emp_bairro, emp_cidade, emp_estado, emp_pais, emp_contato, emp_tipo_empresa, emp_data_cadastro) VALUES 
  ('AgileTech Solutions', '35.985.357/0097-55', 'contato@agiletech.com', '98798-098', 'Machado de Assis', '347',
  'Ap 10º andar', 'Brigadeiro', 'Taboão da Serra', 'SP', 'Brasil', '(11) 98765-8753', 'Tecnologia', '2026-01-10'),
- ('Inova Gestão', '76.008.766/1167-00', 'inova@gest.com', '87533-064', 'Argentina', '76', 'Ap. 3º andar', 'Catuaba',
+ ('Inova Gestão', '76.008.766./1167-00', 'inova@gest.com', '87533-064', 'Argentina', '76', 'Ap. 3º andar', 'Catuaba',
  'São Bento', 'SP', 'Brasil', '(11) 98756-5443', 'Consultoria', '2025-09-27');
 
 -- insert diagnostico
@@ -99,14 +99,46 @@ SET
     emp_email = 'gestor@eco.com'
 WHERE emp_id = 1;
 
+UPDATE tb_resultado_diagnostico
+SET
+	resu_status = 'FINALIZADO'
+WHERE resu_id = 2;
+
 SELECT * FROM tb_empresa WHERE emp_id = 1;
 
 -- DELETE 
 DELETE FROM tb_empresa 
 WHERE emp_cnpj = '35.985.357/0097-58';
 
+DELETE FROM tb_avaliacao
+WHERE avl_id = 2;
 
 -- GROUP BY
 SELECT emp_cidade, COUNT(*) AS total_empresas
 FROM tb_empresa 
 GROUP BY emp_cidade;
+
+SELECT diag_nivel_geral, COUNT(*) AS total_diagnosticos
+FROM tb_diagnostico
+GROUP BY diag_nivel_geral;
+
+-- JOIN
+SELECT 
+    e.emp_nome,
+    d.diag_nivel_geral,
+    d.diag_data
+FROM tb_empresa e
+JOIN tb_diagnostico d 
+    ON e.emp_id = d.emp_id;
+    
+SELECT 
+    e.emp_nome,
+    e.emp_cidade,
+    d.diag_nivel_geral,
+    r.resu_nivel_impacto,
+    r.resu_status
+FROM tb_empresa e
+JOIN tb_diagnostico d 
+    ON e.emp_id = d.emp_id
+JOIN tb_resultado_diagnostico r 
+    ON d.diag_id = r.diag_id;
